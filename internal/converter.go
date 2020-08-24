@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/xml"
 	"fmt"
+	"strings"
 )
 
 // ConvertIdsToXmlForNews конвертирует последовательность строк вида []string{"a", "b", "c"} в xml вида <news><id>a</id><id>b</id><id>c</id></news>
@@ -25,4 +26,8 @@ func ConvertIdsToXmlForNews(ids []string) (string, error) {
 	}
 
 	return "<news>" + buffer.String() + "</news>", nil
+}
+
+func GetString(productIds []string) string {
+	return strings.Join(productIds, "|")
 }

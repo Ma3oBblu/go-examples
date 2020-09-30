@@ -51,6 +51,9 @@ func TestZeroDates(t *testing.T) {
 	emptyDateStr := ""
 	emptyDateTime := BirthDate(emptyDateStr)
 	fmt.Printf("converted date: %s\n", emptyDateTime)
+	if emptyDateTime.IsZero() {
+		fmt.Printf("this date is zero \n")
+	}
 	fmt.Printf("formatted date: %s\n", emptyDateTime.Format("2006-01-02T00:00:00Z"))
 	fmt.Printf("formatted unix: %v\n", emptyDateTime.Unix())
 	timestampConverted := &timestamp.Timestamp{Seconds: emptyDateTime.Unix(), Nanos: int32(emptyDateTime.UnixNano())}

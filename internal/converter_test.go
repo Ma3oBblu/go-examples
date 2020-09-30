@@ -2,6 +2,7 @@ package internal
 
 import (
 	"fmt"
+	"github.com/golang/protobuf/ptypes/timestamp"
 	"github.com/stretchr/testify/assert"
 	"golang.org/x/text/language"
 	"testing"
@@ -44,4 +45,22 @@ func TestTimeZone(t *testing.T) {
 	if err != nil {
 		fmt.Println("Invalid timezone: " + timezone)
 	}
+}
+
+func TestZeroDates(t *testing.T) {
+	emptyDateStr := ""
+	emptyDateTime := BirthDate(emptyDateStr)
+	fmt.Printf("converted date: %s\n", emptyDateTime)
+	fmt.Printf("formatted date: %s\n", emptyDateTime.Format("2006-01-02T00:00:00Z"))
+	fmt.Printf("formatted unix: %v\n", emptyDateTime.Unix())
+	timestampConverted := &timestamp.Timestamp{Seconds: emptyDateTime.Unix(), Nanos: int32(emptyDateTime.UnixNano())}
+	fmt.Printf("timestamp: %s\n", timestampConverted)
+
+	zeroTimeStamp := &timestamp.Timestamp{Seconds: 0, Nanos: 0}
+	zeroTimeFromUnix := time.Unix(zeroTimeStamp.Seconds, int64(zeroTimeStamp.Nanos))
+	fmt.Printf("zeroTimeFromUnix: %s\n", zeroTimeFromUnix)
+	fmt.Printf("zeroTimeFromUnix formatted: %s\n", zeroTimeFromUnix.Format("2006-01-02T00:00:00Z"))
+
+	zeroTime := time.Time{}
+	fmt.Printf("zeroTime formatted: %s\n", zeroTime.Format("2006-01-02T00:00:00Z"))
 }

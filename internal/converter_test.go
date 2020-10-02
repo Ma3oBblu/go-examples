@@ -5,6 +5,7 @@ import (
 	"github.com/golang/protobuf/ptypes/timestamp"
 	"github.com/stretchr/testify/assert"
 	"golang.org/x/text/language"
+	"regexp"
 	"testing"
 	"time"
 )
@@ -66,4 +67,9 @@ func TestZeroDates(t *testing.T) {
 
 	zeroTime := time.Time{}
 	fmt.Printf("zeroTime formatted: %s\n", zeroTime.Format("2006-01-02T00:00:00Z"))
+}
+
+func TestRegexp(t *testing.T) {
+	var emailRegex = regexp.MustCompile("^(?i)(?:[a-zа-я0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-zа-я0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-zа-я0-9](?:[a-zа-я0-9-]*[a-zа-я0-9])?\\.)+[a-zа-я0-9](?:[a-zа-я0-9-]*[a-zа-я0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-zа-я0-9-]*[a-zа-я0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])$")
+	fmt.Printf("%s", emailRegex)
 }

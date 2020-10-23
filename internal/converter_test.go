@@ -76,9 +76,9 @@ func TestRegexp(t *testing.T) {
 
 //BenchmarkBool
 //BenchmarkBool/check_text1_is_exist_in_bool_var
-//BenchmarkBool/check_text1_is_exist_in_bool_var-8         	183924129	         6.49 ns/op
+//BenchmarkBool/check_text1_is_exist_in_bool_var-8         	181123724	         6.56 ns/op	       0 B/op	       0 allocs/op
 //BenchmarkBool/check_text3_is_not_exist_in_bool_var
-//BenchmarkBool/check_text3_is_not_exist_in_bool_var-8     	75784028	        15.5 ns/op
+//BenchmarkBool/check_text3_is_not_exist_in_bool_var-8     	75207015	        15.4 ns/op	       0 B/op	       0 allocs/op
 func BenchmarkBool(b *testing.B) {
 	boolVar := map[string]bool{
 		"text1": true,
@@ -102,6 +102,7 @@ func BenchmarkBool(b *testing.B) {
 	}
 	for _, tt := range testsForBool {
 		b.Run(tt.name, func(b *testing.B) {
+			b.ReportAllocs()
 			for i := 0; i < b.N; i++ {
 				if _, ok := tt.boolVar[tt.checkedValue]; ok {
 					continue
@@ -113,9 +114,9 @@ func BenchmarkBool(b *testing.B) {
 
 //BenchmarkStruct
 //BenchmarkStruct/check_text1_is_exist_in_struct_var
-//BenchmarkStruct/check_text1_is_exist_in_struct_var-8         	187240540	         6.37 ns/op
+//BenchmarkStruct/check_text1_is_exist_in_struct_var-8         	183780481	         6.50 ns/op	       0 B/op	       0 allocs/op
 //BenchmarkStruct/check_text3_is_not_exist_in_struct_var
-//BenchmarkStruct/check_text3_is_not_exist_in_struct_var-8     	73777120	        15.3 ns/op
+//BenchmarkStruct/check_text3_is_not_exist_in_struct_var-8     	74461951	        15.3 ns/op	       0 B/op	       0 allocs/op
 func BenchmarkStruct(b *testing.B) {
 	structVar := map[string]struct{}{
 		"text1": {},
@@ -139,6 +140,7 @@ func BenchmarkStruct(b *testing.B) {
 	}
 	for _, tt := range testsForStruct {
 		b.Run(tt.name, func(b *testing.B) {
+			b.ReportAllocs()
 			for i := 0; i < b.N; i++ {
 				if _, ok := tt.structVar[tt.checkedValue]; ok {
 					continue

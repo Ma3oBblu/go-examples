@@ -1,11 +1,16 @@
 package internal
 
 import (
+	"crypto/md5"
+	"encoding/hex"
 	"fmt"
 	"github.com/golang/protobuf/ptypes/timestamp"
 	"github.com/stretchr/testify/assert"
 	"golang.org/x/text/language"
+	"hash/fnv"
 	"regexp"
+	"strconv"
+	"strings"
 	"testing"
 	"time"
 )
@@ -147,5 +152,17 @@ func BenchmarkStruct(b *testing.B) {
 				}
 			}
 		})
+	}
+}
+
+func TestHashes(t *testing.T) {
+	opinionIds := []string{"test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test"}
+	for j := 0; j < 10; j++ {
+		md5Key := md5.Sum([]byte(strings.Join(opinionIds, "|")))
+		fmt.Println(hex.EncodeToString(md5Key[:]))
+		h := fnv.New64a()
+		_, _ = h.Write([]byte(strings.Join(opinionIds, "|")))
+		fnvKey := strconv.FormatUint(h.Sum64(), 10)
+		fmt.Println(fnvKey)
 	}
 }

@@ -2,6 +2,7 @@ package internal
 
 import (
 	"crypto/md5"
+	"encoding/binary"
 	"encoding/hex"
 	"fmt"
 	"github.com/golang/protobuf/ptypes/timestamp"
@@ -160,9 +161,14 @@ func TestHashes(t *testing.T) {
 	for j := 0; j < 10; j++ {
 		md5Key := md5.Sum([]byte(strings.Join(opinionIds, "|")))
 		fmt.Println(hex.EncodeToString(md5Key[:]))
-		h := fnv.New64a()
-		_, _ = h.Write([]byte(strings.Join(opinionIds, "|")))
-		fnvKey := strconv.FormatUint(h.Sum64(), 10)
-		fmt.Println(fnvKey)
+
+		h1 := fnv.New64a()
+		_, _ = h1.Write([]byte(strings.Join(opinionIds, "|")))
+		fnvKey1 := strconv.FormatUint(h1.Sum64(), 10)
+		fmt.Println(fnvKey1)
+
+		h2 := fnv.New64a().Sum([]byte(strings.Join(opinionIds, "|")))
+		fnvKey2 := binary.BigEndian.Uint64(h2)
+		fmt.Println(strconv.Itoa(int(fnvKey2)))
 	}
 }

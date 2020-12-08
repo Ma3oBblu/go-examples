@@ -9,6 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"golang.org/x/text/language"
 	"hash/fnv"
+	"mime"
 	"regexp"
 	"strconv"
 	"strings"
@@ -171,4 +172,10 @@ func TestHashes(t *testing.T) {
 		fnvKey2 := binary.BigEndian.Uint64(h2)
 		fmt.Println(strconv.Itoa(int(fnvKey2)))
 	}
+}
+
+func TestMime(t *testing.T) {
+	extension := ".jpg"
+	mimeType := mime.TypeByExtension(extension)
+	fmt.Println(mimeType)
 }

@@ -1,4 +1,4 @@
-module go-xml-examples
+module go-examples
 
 go 1.15
 

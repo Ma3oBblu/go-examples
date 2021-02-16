@@ -37,3 +37,15 @@ func TestZeroDates(t *testing.T) {
 	zeroTime := time.Time{}
 	fmt.Printf("zeroTime formatted: %s\n", zeroTime.Format("2006-01-02T00:00:00Z"))
 }
+
+func TestParseDateAnother(t *testing.T) {
+	dateString := "18 May 2020 09:58:5"
+	loc, _ := time.LoadLocation("Europe/Moscow")
+	date, err := time.ParseInLocation("02 Jan 2006 15:04:5", dateString, loc)
+	if err != nil {
+		fmt.Printf("%s", err)
+	}
+	//date = date.Add(3 * time.Hour)
+	// parsed string 2020-05-18 09:58:05 +0000 UTC, unix 1589795885, location UTC
+	fmt.Printf("parsed string %s, unix %v, location %s", date.String(), date.Unix(), date.Location())
+}

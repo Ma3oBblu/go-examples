@@ -1,0 +1,17 @@
+func Test{{.FuncName}}(t *testing.T) {
+    tests := []struct {
+        name string
+        val  {{.ValueType}}
+        want zap.Field
+    }{
+        {{.Test}}
+    }
+    for _, tt := range tests {
+        tt := tt
+        t.Run(tt.name, func(t *testing.T) {
+            if got := {{.FuncName}}(tt.val); !reflect.DeepEqual(got, tt.want) {
+                t.Errorf("{{.FuncName}}() = %v, want %v", got, tt.want)
+            }
+        })
+    }
+}

@@ -31,3 +31,10 @@ func TestString(t *testing.T) {
 	replaced := strings.ReplaceAll(str, " ", ",")
 	fmt.Printf("%s", replaced)
 }
+
+func TestTrim(t *testing.T) {
+	invalidString := "     Ruslan      "
+	fmt.Printf("Trim ====>%s<=\n", strings.Trim(invalidString, " "))
+	fmt.Printf("TrimLeft ====>%s<=\n", strings.TrimLeft(invalidString, " "))
+	fmt.Printf("TrimRight ====>%s<=\n", strings.TrimRight(invalidString, " "))
+}

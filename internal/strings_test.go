@@ -33,7 +33,7 @@ func TestString(t *testing.T) {
 }
 
 func TestTrim(t *testing.T) {
-	invalidString := "     Ruslan      "
+	invalidString := "        Hello фывфыв      "
 	fmt.Printf("Trim ====>%s<=\n", strings.Trim(invalidString, " "))
 	fmt.Printf("TrimLeft ====>%s<=\n", strings.TrimLeft(invalidString, " "))
 	fmt.Printf("TrimRight ====>%s<=\n", strings.TrimRight(invalidString, " "))

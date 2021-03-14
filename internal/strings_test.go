@@ -38,3 +38,7 @@ func TestTrim(t *testing.T) {
 	fmt.Printf("TrimLeft ====>%s<=\n", strings.TrimLeft(invalidString, " "))
 	fmt.Printf("TrimRight ====>%s<=\n", strings.TrimRight(invalidString, " "))
 }
+
+func TestBell(t *testing.T) {
+	fmt.Print("\a")
+}

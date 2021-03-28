@@ -1,8 +1,11 @@
 package internal
 
 import (
+	"context"
 	"fmt"
 	"github.com/stretchr/testify/assert"
+	"google.golang.org/grpc/metadata"
+	"os"
 	"strings"
 	"testing"
 )
@@ -41,4 +44,19 @@ func TestTrim(t *testing.T) {
 
 func TestBell(t *testing.T) {
 	fmt.Print("\a")
+}
+
+func TestMd(t *testing.T) {
+	accessToken := "123"
+	isTester := false
+	md := make([]string, 0)
+	md = append(md, "ip", "192.168.0.1")
+	md = append(md, "jwt", accessToken)
+	if isTester {
+		md = append(md, os.Getenv("CL_TESTER_HEADER_NAME"), "true")
+	}
+	ctx := context.Background()
+	newCtx := metadata.AppendToOutgoingContext(ctx, md...)
+	newMd, _ := metadata.FromOutgoingContext(newCtx)
+	fmt.Printf("%v", newMd)
 }

@@ -49,3 +49,12 @@ func TestParseDateAnother(t *testing.T) {
 	// parsed string 2020-05-18 09:58:05 +0000 UTC, unix 1589795885, location UTC
 	fmt.Printf("parsed string %s, unix %v, location %s", date.String(), date.Unix(), date.Location())
 }
+
+func TestParseDateTime(t *testing.T) {
+	rawDate := "2021-01-14 00:00:00"
+	date, err := time.Parse("2006-01-02 00:00:00", rawDate)
+	if err != nil {
+		fmt.Printf("%s", err)
+	}
+	fmt.Printf("%v", date.Unix())
+}

@@ -58,3 +58,51 @@ func TestParseDateTime(t *testing.T) {
 	}
 	fmt.Printf("%v", date.Unix())
 }
+
+func TestGenTime(t *testing.T) {
+	//loc, _ := time.LoadLocation("Europe/Moscow")
+	loc := time.FixedZone("asdasd", 0)
+	d := time.Date(2021, time.Month(4), 17, 0, 0, 0, 0, loc)
+	fmt.Printf("%v", d.String())
+	fmt.Printf("\n%v", d.Unix())
+	fmt.Printf("\n%s", d.Format(time.RFC3339))
+
+	t1 := time.Time{}
+	var receivedMinute int
+	// не все точки обладают информацией о времени получения товара
+	receivedHour := 0
+
+	t2 := time.Date(
+		t1.Year(),
+		t1.Month(),
+		t1.Day(),
+		receivedHour,
+		receivedMinute,
+		0,
+		0,
+		loc,
+	)
+
+	fmt.Printf("\n\n\n%v => %s => %v", t1.IsZero(), t2.String(), t2.IsZero())
+}
+
+func TestMultiCount(t *testing.T) {
+	count := []int{1, 1, 1, 1, 10, 10, 40, 40, 50, 50, 50}
+	multi := []int{0, 1, 10, 40, 10, 40, 10, 40, 10, 40, 11}
+	for i := range multi {
+		result := 0
+		if multi[i] != 0 && count[i]%multi[i] != 0 {
+			if count[i] <= multi[i] {
+				result = multi[i]
+				fmt.Printf("if    ===> \t|")
+			} else {
+				result = count[i] / multi[i] * multi[i]
+				fmt.Printf("else  ===> \t|")
+			}
+		} else {
+			fmt.Printf("count ===> \t|")
+			result = count[i]
+		}
+		fmt.Printf("count -> %v multi -> %v result -> %v\n", count[i], multi[i], result)
+	}
+}

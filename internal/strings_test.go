@@ -60,3 +60,18 @@ func TestMd(t *testing.T) {
 	newMd, _ := metadata.FromOutgoingContext(newCtx)
 	fmt.Printf("%v", newMd)
 }
+
+func TestConvertSymbolsWithRune(t *testing.T) {
+	testString := "Ma3oBblu@gmail.com"
+	fmt.Printf("in => %s, out => %s\n", testString, ConvertSymbolsWithRune(testString))
+}
+
+func TestConvertSymbolsWithBytes(t *testing.T) {
+	testString := "Ma3oBblu@gmail.com"
+	fmt.Printf("in => %s, out => %s\n", testString, ConvertSymbolsWithBytes(testString))
+}
+
+func TestConvertSymbolsWithSlicing(t *testing.T) {
+	testString := "Ma3oBblu@gmail.com"
+	fmt.Printf("in => %s, out => %s\n", testString, ConvertSymbolsWithSlicing(testString))
+}

@@ -77,3 +77,32 @@ func BenchmarkStruct(b *testing.B) {
 		})
 	}
 }
+
+func BenchmarkStringMethods(b *testing.B) {
+	testsForStruct := []struct {
+		name string
+		make func()
+	}{
+		{
+			"check ConvertSymbolsWithRune",
+			func() { ConvertSymbolsWithRune("Ma3oBblu@gmail.com") },
+		},
+		{
+			"check ConvertSymbolsWithBytes",
+			func() { ConvertSymbolsWithBytes("Ma3oBblu@gmail.com") },
+		},
+		{
+			"check ConvertSymbolsWithSlicing",
+			func() { ConvertSymbolsWithSlicing("Ma3oBblu@gmail.com") },
+		},
+	}
+	for _, tt := range testsForStruct {
+		tt := tt
+		b.Run(tt.name, func(b *testing.B) {
+			b.ReportAllocs()
+			for i := 0; i < b.N; i++ {
+				tt.make()
+			}
+		})
+	}
+}

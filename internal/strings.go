@@ -16,21 +16,21 @@ func GetPasswordHash(password string) ([]byte, error) {
 }
 
 func ConvertSymbolsWithRune(str string) string {
-	result := make([]rune, len(str))
-	for i := range []rune(str) {
-		if i == 0 || i == len(str)-1 || rune(str[i]) == '@' {
-			result[i] = rune(str[i])
+	runeStr := []rune(str)
+	for i := range runeStr {
+		if i == 0 || i == len(runeStr)-1 {
 			continue
 		}
-		result[i] = '*'
+		runeStr[i] = '*'
 	}
-	return string(result)
+	return string(runeStr)
 }
 
 func ConvertSymbolsWithBytes(str string) string {
-	bytes := []byte(str)
-	for i, k := range bytes {
-		if i == 0 || i == len(bytes)-1 || string(k) == "@" {
+	bytes := make([]byte, len(str))
+	for i, k := range []byte(str) {
+		if i == 0 || i == len(str)-1 {
+			bytes[i] = k
 			continue
 		}
 		bytes[i] = []byte("*")[0]

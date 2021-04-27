@@ -78,6 +78,12 @@ func BenchmarkStruct(b *testing.B) {
 	}
 }
 
+//BenchmarkStringMethods/check_ConvertSymbolsWithRune
+//BenchmarkStringMethods/check_ConvertSymbolsWithRune-8         	 5204174	       229.6 ns/op	      24 B/op	       1 allocs/op
+//BenchmarkStringMethods/check_ConvertSymbolsWithBytes
+//BenchmarkStringMethods/check_ConvertSymbolsWithBytes-8        	14628835	        83.45 ns/op	      48 B/op	       2 allocs/op
+//BenchmarkStringMethods/check_ConvertSymbolsWithSlicing
+//BenchmarkStringMethods/check_ConvertSymbolsWithSlicing-8      	10526592	       112.8 ns/op	      16 B/op	       1 allocs/op
 func BenchmarkStringMethods(b *testing.B) {
 	testsForStruct := []struct {
 		name string

@@ -3,6 +3,7 @@ package internal
 import (
 	"context"
 	"fmt"
+	"github.com/ma3obblu/masker"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc/metadata"
 	"os"
@@ -74,4 +75,9 @@ func TestConvertSymbolsWithBytes(t *testing.T) {
 func TestConvertSymbolsWithSlicing(t *testing.T) {
 	testString := "Ma3oBblu@gmail.com"
 	fmt.Printf("in => %s, out => %s\n", testString, ConvertSymbolsWithSlicing(testString))
+}
+
+func TestMasker(t *testing.T) {
+	testString := "Ma3oBblu@gmail.com"
+	fmt.Printf("in => %s, out => %s\n", testString, masker.Email(testString))
 }

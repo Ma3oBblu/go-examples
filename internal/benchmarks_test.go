@@ -1,6 +1,7 @@
 package internal
 
 import "testing"
+import "github.com/ma3obblu/masker"
 
 //BenchmarkBool
 //BenchmarkBool/check_text1_is_exist_in_bool_var
@@ -78,12 +79,18 @@ func BenchmarkStruct(b *testing.B) {
 	}
 }
 
-//BenchmarkStringMethods/check_ConvertSymbolsWithRune
-//BenchmarkStringMethods/check_ConvertSymbolsWithRune-8         	 5204174	       229.6 ns/op	      24 B/op	       1 allocs/op
+// BenchmarkStringMethods/check_ConvertSymbolsWithRune
+//BenchmarkStringMethods/check_ConvertSymbolsWithRune-8         	 4831677	       227.7 ns/op	      24 B/op	       1 allocs/op
 //BenchmarkStringMethods/check_ConvertSymbolsWithBytes
-//BenchmarkStringMethods/check_ConvertSymbolsWithBytes-8        	14628835	        83.45 ns/op	      48 B/op	       2 allocs/op
+//BenchmarkStringMethods/check_ConvertSymbolsWithBytes-8        	13781157	        82.14 ns/op	      48 B/op	       2 allocs/op
 //BenchmarkStringMethods/check_ConvertSymbolsWithSlicing
-//BenchmarkStringMethods/check_ConvertSymbolsWithSlicing-8      	10526592	       112.8 ns/op	      16 B/op	       1 allocs/op
+//BenchmarkStringMethods/check_ConvertSymbolsWithSlicing-8      	 9721963	       119.0 ns/op	      16 B/op	       1 allocs/op
+//BenchmarkStringMethods/sensitive
+//BenchmarkStringMethods/sensitive-8                            	 1458075	       847.4 ns/op	     290 B/op	       4 allocs/op
+//BenchmarkStringMethods/masker
+//BenchmarkStringMethods/masker-8                               	 4024092	       292.0 ns/op	      56 B/op	       2 allocs/op
+//BenchmarkStringMethods/masker#01
+//BenchmarkStringMethods/masker#01-8                            	 9733102	       119.4 ns/op	      32 B/op	       2 allocs/op
 func BenchmarkStringMethods(b *testing.B) {
 	testsForStruct := []struct {
 		name string
@@ -100,6 +107,18 @@ func BenchmarkStringMethods(b *testing.B) {
 		{
 			"check ConvertSymbolsWithSlicing",
 			func() { ConvertSymbolsWithSlicing("Ma3oBblu@gmail.com") },
+		},
+		{
+			"sensitive",
+			func() { MaskSensitiveDataRunes("123456") },
+		},
+		{
+			"masker",
+			func() { masker.Email("Ma3oBblu@gmail.com") },
+		},
+		{
+			"masker",
+			func() { masker.LastFourDigits("79191232323") },
 		},
 	}
 	for _, tt := range testsForStruct {

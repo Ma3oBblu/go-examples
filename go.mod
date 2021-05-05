@@ -1,11 +1,11 @@
 module go-examples
 
-go 1.15
+go 1.16
 
 require (
 	github.com/fatih/color v1.10.0
 	github.com/golang/protobuf v1.4.2
-	github.com/ma3obblu/masker v1.0.1
+	github.com/ma3obblu/masker v1.0.4
 	github.com/stretchr/testify v1.6.1
 	go.uber.org/zap v1.16.0
 	golang.org/x/crypto v0.0.0-20190510104115-cbcb75029529

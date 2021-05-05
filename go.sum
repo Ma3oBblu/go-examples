@@ -37,10 +37,8 @@ github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORN
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
 github.com/kr/text v0.1.0 h1:45sCR5RtlFHMR4UwH9sdQ5TC8v0qDQCHnXt+kaKSTVE=
 github.com/kr/text v0.1.0/go.mod h1:4Jbv+DJW3UT/LiOwJeYQe1efqtUx/iVham/4vfdArNI=
-github.com/ma3obblu/masker v1.0.0 h1:ezgZNWy/D4Z32Ap8zt0VodefUB3GP/X17/9XWQGd1kU=
-github.com/ma3obblu/masker v1.0.0/go.mod h1:ACff4j059PD/dX1fy1WqmCl4Aw+6D9O3ZAjcbu2TdNE=
-github.com/ma3obblu/masker v1.0.1 h1:wuCCsj2FKUrgrvAov/80XqA2LMilCKQ74HXq5I6JJEA=
-github.com/ma3obblu/masker v1.0.1/go.mod h1:ACff4j059PD/dX1fy1WqmCl4Aw+6D9O3ZAjcbu2TdNE=
+github.com/ma3obblu/masker v1.0.4 h1:qBopNsROjXapmu7YyBSgJNyErpA0REpq3y732fF/Rdg=
+github.com/ma3obblu/masker v1.0.4/go.mod h1:Gsu4tLmpsBBmZZ/GFRyTjZ6FY6c65ocThcCYBEWrzFI=
 github.com/mattn/go-colorable v0.1.8 h1:c1ghPdyEDarC70ftn0y+A/Ee++9zz8ljHG1b13eJ0s8=
 github.com/mattn/go-colorable v0.1.8/go.mod h1:u6P/XSegPjTcexA+o6vUJrdnUu04hMope9wVRipJSqc=
 github.com/mattn/go-isatty v0.0.12 h1:wuysRhFDzyxgEmMf5xjvJ2M9dZoWAXNNr5LSBS7uHXY=

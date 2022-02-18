@@ -86,15 +86,60 @@ func TestUpdateSlice(t *testing.T) {
 		{
 			name: "есть изменения",
 			fields: fields{
+				SliceNums: []int64{1, 2, 3, 4, 228},
+			},
+			args: args{
+				updater: func(int64s []int64) []int64 {
+					return append(int64s, []int64{228, 1090296}...)
+				},
+			},
+			wantHasChange: true,
+			wantSliceNums: []int64{1, 2, 3, 4, 228, 1090296},
+		},
+		{
+			name: "есть изменения",
+			fields: fields{
+				SliceNums: []int64{1, 2, 3, 4, 225, 228},
+			},
+			args: args{
+				updater: func(int64s []int64) []int64 {
+					return append(int64s, []int64{225, 228, 1090296}...)
+				},
+			},
+			wantHasChange: true,
+			wantSliceNums: []int64{1, 2, 3, 4, 225, 228, 1090296},
+		},
+		{
+			name: "есть изменения",
+			fields: fields{
 				SliceNums: []int64{1, 2, 3},
 			},
 			args: args{
 				updater: func(int64s []int64) []int64 {
-					return append(int64s, 4)
+					if isArraysIntersects(int64s, []int64{7, 8}) {
+						return append(int64s, []int64{11, 12}...)
+					}
+					return int64s
+				},
+			},
+			wantHasChange: false,
+			wantSliceNums: []int64{1, 2, 3},
+		},
+		{
+			name: "есть изменения",
+			fields: fields{
+				SliceNums: []int64{1, 2, 7, 3},
+			},
+			args: args{
+				updater: func(int64s []int64) []int64 {
+					if isArraysIntersects(int64s, []int64{7, 8}) {
+						return append(int64s, []int64{11, 12}...)
+					}
+					return int64s
 				},
 			},
 			wantHasChange: true,
-			wantSliceNums: []int64{1, 2, 3, 4},
+			wantSliceNums: []int64{1, 2, 7, 3, 11, 12},
 		},
 	}
 	for _, tt := range tests {

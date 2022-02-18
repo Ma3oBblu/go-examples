@@ -50,3 +50,18 @@ func (m *Slice) UpdateSlice(updater Updater) (hasChange bool) {
 
 	return
 }
+
+func isArraysIntersects(a1, a2 []int64) bool {
+	h := make(map[int64]bool)
+	for _, e := range a1 {
+		h[e] = true
+	}
+
+	for _, e := range a2 {
+		if h[e] {
+			return true
+		}
+	}
+
+	return false
+}

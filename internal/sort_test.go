@@ -141,6 +141,38 @@ func TestUpdateSlice(t *testing.T) {
 			wantHasChange: true,
 			wantSliceNums: []int64{1, 2, 7, 3, 11, 12},
 		},
+		{
+			name: "есть изменения",
+			fields: fields{
+				SliceNums: []int64{1, 2, 3},
+			},
+			args: args{
+				updater: func(int64s []int64) []int64 {
+					if isArraysIntersects(int64s, []int64{1, 4}) {
+						return append(int64s, []int64{5}...)
+					}
+					return int64s
+				},
+			},
+			wantHasChange: true,
+			wantSliceNums: []int64{1, 2, 3, 5},
+		},
+		{
+			name: "есть изменения",
+			fields: fields{
+				SliceNums: []int64{1, 2, 3},
+			},
+			args: args{
+				updater: func(int64s []int64) []int64 {
+					if isArraysIntersects(int64s, []int64{1}) {
+						return append(int64s, []int64{1, 2}...)
+					}
+					return int64s
+				},
+			},
+			wantHasChange: false,
+			wantSliceNums: []int64{1, 2, 3},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(
